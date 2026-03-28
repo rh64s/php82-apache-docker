@@ -9,7 +9,7 @@ volumes:
 services:
   php:
     build:
-      context: ..
+      context: ./
       args:
         USER: ${USER:-user}
         PASSWORD: ${PASSWORD:-password}
