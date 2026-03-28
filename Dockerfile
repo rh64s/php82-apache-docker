@@ -1,6 +1,7 @@
-FROM php:8-apache
+FROM php:82-apache
 ARG USER=user
 ARG PASSWORD=password
+ARG WORKDIR=project
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -20,8 +21,13 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
 # Install extensions
 RUN docker-php-ext-install pdo_mysql zip exif pcntl mysqli gd
+
+WORKDIR $WORKDIR
 
 #Add user
 RUN useradd -m -s /bin/bash -p $(openssl passwd -1 $PASSWORD) $USER
