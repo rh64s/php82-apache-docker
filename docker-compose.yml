@@ -9,11 +9,11 @@ volumes:
 services:
   php:
     build:
-      context: ./
+      context: ..
       args:
         USER: ${USER:-user}
         PASSWORD: ${PASSWORD:-password}
-        WORKDIR: ${PROJECT_NAME:-workdir}
+        WORKDIR: ${PROJECT_NAME:-project}
     environment:
       - APACHE_RUN_USER=${USER:-user}
       - APACHE_RUN_GROUP=${USER:-user}
